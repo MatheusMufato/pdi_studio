@@ -10,6 +10,8 @@ class MenuBar:
         file_menu.add_command(label="Abrir", command=controller.open_image)
         file_menu.add_command(label="Salvar como...", command=controller.save_image)
         file_menu.add_separator()
+        file_menu.add_command(label="Resetar Imagem", command=controller.apply_reset) # NOVO
+        file_menu.add_separator()
         file_menu.add_command(label="Sair", command=root.quit)
         self.menubar.add_cascade(label="Arquivo", menu=file_menu)
 
@@ -18,3 +20,7 @@ class MenuBar:
         filter_menu.add_command(label="Converter para tons de cinza", command=controller.apply_gray)
         filter_menu.add_command(label="Equalizar histograma", command=controller.apply_equalization)
         self.menubar.add_cascade(label="Filtros", menu=filter_menu)
+
+        analysis_menu = tk.Menu(self.menubar, tearoff=0)
+        analysis_menu.add_command(label="Limiarização (Otsu)", command=controller.apply_otsu_threshold)
+        self.menubar.add_cascade(label="Análise", menu=analysis_menu)
